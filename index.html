@@ -131,14 +131,17 @@
     .card-img img { height: 176px; width: auto; object-fit: contain; }
     .card-body { padding: 1rem; display: flex; flex-direction: column; flex: 1; }
     .card h3 { margin: 0; }
-    .card .spec { color: var(--muted); font-size: 14px; margin: 0 0 0.65rem; }
-    .swatches { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 0 0.85rem; }
+    .card .spec { color: var(--muted); font-size: 14px; margin: 0 0 0.55rem; }
+    .swatches { display: flex; align-items: center; gap: 10px; margin: 0 0 0.9rem; }
+    .color-label { font-size: 12px; color: var(--muted); }
+    .dots { display: flex; gap: 8px; }
     .swatch {
-      width: 18px; height: 18px; border-radius: 50%; padding: 0; cursor: pointer;
-      border: 2px solid transparent; box-shadow: inset 0 0 0 1px rgba(255,255,255,.28);
+      width: 22px; height: 22px; border-radius: 50%; padding: 0; cursor: pointer;
+      border: 2px solid transparent; background-clip: padding-box;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.22);
     }
-    .swatch.on { border-color: var(--fg); box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--primary); }
-    .color-name { font-size: 12px; color: var(--muted); }
+    .swatch.on { border-color: #fff; box-shadow: 0 0 0 2px #12141a; }
+    .spec .color-name { color: var(--muted); }
     .card-foot {
       margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end;
       border-top: 1px solid var(--border); padding-top: 0.75rem;
@@ -503,13 +506,14 @@
       const colors = COLORWAYS[p.name] || [];
       const current = colors.find((c) => c.image === p.image) || colors[0];
       const swatches = colors.length
-        ? `<div class="swatches">${colors.map((c) => `<button type="button" class="swatch${current && c.name === current.name ? " on" : ""}" style="background:${c.hex}" data-color="${c.name}" data-img="${c.image}" title="${c.name}" aria-label="${c.name}"></button>`).join("")}<span class="color-name">${current ? current.name : ""}</span></div>`
+        ? `<div class="swatches"><span class="color-label">Color</span><div class="dots">${colors.map((c) => `<button type="button" class="swatch${current && c.name === current.name ? " on" : ""}" style="background:${c.hex}" data-color="${c.name}" data-img="${c.image}" title="${c.name}" aria-label="${c.name}"></button>`).join("")}</div></div>`
         : "";
+      const spec = current ? `${p.storage} · <span class="color-name">${current.name}</span>` : p.storage;
       return `<article class="card" data-preventa="${p.preventa ? "1" : ""}" data-model="${p.name}" data-storage="${p.storage}">${badge}
         <div class="card-img"><img src="${current ? current.image : p.image}" alt="${p.name} ${current ? current.name : p.storage}"></div>
         <div class="card-body">
           <h3>${p.name}</h3>
-          <p class="spec">${p.storage}</p>
+          <p class="spec">${spec}</p>
           ${swatches}
           <div class="card-foot">
             <div><p class="price">${soles(main)}</p><p class="kicker">${label}</p></div>
