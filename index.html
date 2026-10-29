@@ -131,7 +131,14 @@
     .card-img img { height: 176px; width: auto; object-fit: contain; }
     .card-body { padding: 1rem; display: flex; flex-direction: column; flex: 1; }
     .card h3 { margin: 0; }
-    .card .spec { color: var(--muted); font-size: 14px; margin: 0 0 1rem; }
+    .card .spec { color: var(--muted); font-size: 14px; margin: 0 0 0.65rem; }
+    .swatches { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 0 0.85rem; }
+    .swatch {
+      width: 18px; height: 18px; border-radius: 50%; padding: 0; cursor: pointer;
+      border: 2px solid transparent; box-shadow: inset 0 0 0 1px rgba(255,255,255,.28);
+    }
+    .swatch.on { border-color: var(--fg); box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--primary); }
+    .color-name { font-size: 12px; color: var(--muted); }
     .card-foot {
       margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end;
       border-top: 1px solid var(--border); padding-top: 0.75rem;
@@ -452,11 +459,38 @@
       { series:"15", name:"iPhone 15", storage:"128 GB Chip + eSIM", image:"public/phones/15-black.png", unit:2699, bulk3:2599, bulk10:2199 }
     ];
 
+    const COLORWAYS = {
+      "iPhone 18 Pro": [
+        { name: "Blanco", hex: "#d7d7d7", image: "public/phones/18-pro-silver.png" },
+        { name: "Negro", hex: "#1c1c1c", image: "public/phones/18-pro-black.png" },
+        { name: "Gris glaciar", hex: "#8eafc4", image: "public/phones/18-pro-glacier.png" },
+        { name: "Borgoña", hex: "#6b2433", image: "public/phones/18-pro-burgundy.png" }
+      ],
+      "iPhone 18 Pro Max": [
+        { name: "Blanco", hex: "#d7d7d7", image: "public/phones/18-pro-max-silver.png" },
+        { name: "Negro", hex: "#1c1c1c", image: "public/phones/18-pro-max-black.png" },
+        { name: "Gris glaciar", hex: "#8eafc4", image: "public/phones/18-pro-max-glacier.png" },
+        { name: "Borgoña", hex: "#6b2433", image: "public/phones/18-pro-max-burgundy.png" }
+      ],
+      "iPhone 17": [
+        { name: "Black", hex: "#1c1c1c", image: "public/phones/17-black.png" },
+        { name: "White", hex: "#f2f2f2", image: "public/phones/17-white.png" },
+        { name: "Lavender", hex: "#b7a4d4", image: "public/phones/17-lavender.png" },
+        { name: "Mist Blue", hex: "#8eafc8", image: "public/phones/17-mistblue.png" },
+        { name: "Sage", hex: "#8eae86", image: "public/phones/17-sage.png" }
+      ],
+      "iPhone 17 Pro Max": [
+        { name: "Deep Blue", hex: "#1e3a78", image: "public/phones/17-pro-max-blue.png" },
+        { name: "Cosmic Orange", hex: "#e07a32", image: "public/phones/17-pro-max-orange.png" },
+        { name: "Silver", hex: "#d7d7d7", image: "public/phones/17-pro-max-silver.png" }
+      ]
+    };
+
     const soles = (n) => "S/ " + n.toLocaleString("es-PE");
-    const wa = (p) => "https://wa.me/51997610401?text=" + encodeURIComponent(
-      p.preventa
+    const wa = (p, color) => "https://wa.me/51997610401?text=" + encodeURIComponent(
+      (p.preventa
         ? "Hola, quiero información sobre la preventa del " + p.name + " de " + p.storage
-        : "Hola, quiero comprar el " + p.name + " de " + p.storage
+        : "Hola, quiero comprar el " + p.name + " de " + p.storage) + (color ? " color " + color : "")
     );
 
     function card(p) {
@@ -466,26 +500,55 @@
       const extra = p.contra
         ? `Contra entrega<br><strong style="color:var(--fg)">${soles(p.contra)}</strong>`
         : (p.bulk3 && p.bulk10 ? `+3: <strong style="color:var(--fg)">${soles(p.bulk3)}</strong><br>+10: <strong style="color:var(--fg)">${soles(p.bulk10)}</strong>` : "");
-      return `<article class="card">${badge}
-        <div class="card-img"><img src="${p.image}" alt="${p.name} ${p.storage}"></div>
+      const colors = COLORWAYS[p.name] || [];
+      const current = colors.find((c) => c.image === p.image) || colors[0];
+      const swatches = colors.length
+        ? `<div class="swatches">${colors.map((c) => `<button type="button" class="swatch${current && c.name === current.name ? " on" : ""}" style="background:${c.hex}" data-color="${c.name}" data-img="${c.image}" title="${c.name}" aria-label="${c.name}"></button>`).join("")}<span class="color-name">${current ? current.name : ""}</span></div>`
+        : "";
+      return `<article class="card" data-preventa="${p.preventa ? "1" : ""}" data-model="${p.name}" data-storage="${p.storage}">${badge}
+        <div class="card-img"><img src="${current ? current.image : p.image}" alt="${p.name} ${current ? current.name : p.storage}"></div>
         <div class="card-body">
           <h3>${p.name}</h3>
           <p class="spec">${p.storage}</p>
+          ${swatches}
           <div class="card-foot">
             <div><p class="price">${soles(main)}</p><p class="kicker">${label}</p></div>
             <p class="tiny">${extra}</p>
           </div>
-          <a class="consult" href="${wa(p)}" target="_blank" rel="noopener">${p.preventa ? "Reservar ahora" : "Comprar Ahora!"}</a>
+          <a class="consult" href="${wa(p, current && current.name)}" target="_blank" rel="noopener">${p.preventa ? "Reservar ahora" : "Comprar Ahora!"}</a>
         </div>
       </article>`;
     }
 
+    function bindSwatches(root) {
+      root.querySelectorAll(".card").forEach((el) => {
+        if (el.dataset.colorsBound) return;
+        el.dataset.colorsBound = "1";
+        const img = el.querySelector("img");
+        const name = el.querySelector(".color-name");
+        const link = el.querySelector(".consult");
+        el.querySelectorAll(".swatch").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            el.querySelectorAll(".swatch").forEach((b) => b.classList.remove("on"));
+            btn.classList.add("on");
+            img.src = btn.dataset.img;
+            img.alt = el.dataset.model + " " + btn.dataset.color;
+            if (name) name.textContent = btn.dataset.color;
+            const fake = { name: el.dataset.model, storage: el.dataset.storage, preventa: el.dataset.preventa === "1" };
+            link.href = wa(fake, btn.dataset.color);
+          });
+        });
+      });
+    }
+
     document.getElementById("preventa-grid").innerHTML = PRODUCTS.filter((p) => p.series === "18" || p.series === "duo").map(card).join("");
+    bindSwatches(document.getElementById("preventa-grid"));
 
     const catalog = PRODUCTS.filter((p) => p.series === "17" || p.series === "16" || p.series === "15");
     const catalogGrid = document.getElementById("catalog-grid");
     function renderCatalog(tab) {
       catalogGrid.innerHTML = catalog.filter((p) => tab === "all" || p.series === tab).map(card).join("");
+      bindSwatches(catalogGrid);
     }
     renderCatalog("all");
     document.getElementById("tabs").addEventListener("click", (e) => {
