@@ -427,17 +427,18 @@
 
   <script>
     const PRODUCTS = [
-      { series:"18", name:"iPhone 18 Pro", storage:"256 GB eSIM", image:"public/phones/18-pro-black.png", tag:"preventa", preventa:5499, contra:5899 },
-      { series:"18", name:"iPhone 18 Pro", storage:"512 GB eSIM", image:"public/phones/18-pro-silver.png", tag:"preventa", preventa:6099, contra:6499 },
-      { series:"18", name:"iPhone 18 Pro", storage:"1 TB eSIM", image:"public/phones/18-pro-glacier.png", tag:"preventa", preventa:7299, contra:7690 },
-      { series:"18", name:"iPhone 18 Pro Max", storage:"256 GB eSIM", image:"public/phones/18-pro-max-black.png", tag:"preventa", preventa:6499, contra:6999 },
-      { series:"18", name:"iPhone 18 Pro Max", storage:"512 GB eSIM", image:"public/phones/18-pro-max-silver.png", tag:"preventa", preventa:6990, contra:7499 },
-      { series:"18", name:"iPhone 18 Pro Max", storage:"1 TB eSIM", image:"public/phones/18-pro-max-glacier.png", tag:"preventa", preventa:7899, contra:8299 },
-      { series:"18", name:"iPhone 18 Pro Max", storage:"2 TB eSIM", image:"public/phones/18-pro-max-burgundy.png", tag:"preventa", preventa:9390, contra:9990 },
-      { series:"duo", name:"iPhone Dúo", storage:"256 GB", image:"public/phones/duo-star-white.png", tag:"preventa", preventa:8290, contra:8790 },
-      { series:"duo", name:"iPhone Dúo", storage:"512 GB", image:"public/phones/duo-night-sky.png", tag:"preventa", preventa:8999, contra:9499 },
-      { series:"duo", name:"iPhone Dúo", storage:"1 TB", image:"public/phones/duo-star-white.png", tag:"preventa", preventa:10290, contra:10790 },
-      { series:"duo", name:"iPhone Dúo", storage:"2 TB", image:"public/phones/duo-night-sky.png", tag:"preventa", preventa:12290, contra:12699 },
+      { series:"18", name:"iPhone 18 Pro", storage:"256 GB eSIM", image:"public/phones/18-pro-silver.png", tag:"preventa", preventa:5399, contra:5799, bulk3:4599, bulk10:4199 },
+      { series:"18", name:"iPhone 18 Pro", storage:"512 GB eSIM", image:"public/phones/18-pro-silver.png", tag:"preventa", preventa:6199, contra:6370, bulk3:5370, bulk10:4999 },
+      { series:"18", name:"iPhone 18 Pro", storage:"1 TB eSIM", image:"public/phones/18-pro-silver.png", tag:"preventa", preventa:7299, contra:7690, bulk3:7299, bulk10:6999 },
+      { series:"18", name:"iPhone 18 Pro", storage:"2 TB eSIM", image:"public/phones/18-pro-silver.png", tag:"preventa", bulk3:8790, bulk10:7999 },
+      { series:"18", name:"iPhone 18 Pro Max", storage:"256 GB eSIM", image:"public/phones/18-pro-max-silver.png", tag:"preventa", preventa:6099, contra:6699, bulk3:5999, bulk10:5499 },
+      { series:"18", name:"iPhone 18 Pro Max", storage:"512 GB eSIM", image:"public/phones/18-pro-max-silver.png", tag:"preventa", preventa:6970, contra:7499, bulk3:7299, bulk10:6999 },
+      { series:"18", name:"iPhone 18 Pro Max", storage:"1 TB eSIM", image:"public/phones/18-pro-max-silver.png", tag:"preventa", preventa:8790, contra:9790, bulk3:9290, bulk10:8799 },
+      { series:"18", name:"iPhone 18 Pro Max", storage:"2 TB eSIM", image:"public/phones/18-pro-max-silver.png", tag:"preventa", preventa:9390, contra:9990, bulk3:8790, bulk10:7999 },
+      { series:"duo", name:"iPhone Dúo", storage:"256 GB", image:"public/phones/duo-star-white.png", tag:"preventa", preventa:8290, contra:8999 },
+      { series:"duo", name:"iPhone Dúo", storage:"512 GB", image:"public/phones/duo-night-sky.png", tag:"preventa", preventa:8999, contra:9990 },
+      { series:"duo", name:"iPhone Dúo", storage:"1 TB", image:"public/phones/duo-star-white.png", tag:"preventa", preventa:10290, contra:10999 },
+      { series:"duo", name:"iPhone Dúo", storage:"2 TB", image:"public/phones/duo-night-sky.png", tag:"preventa", preventa:12290, contra:12970 },
       { series:"17", name:"iPhone 17", storage:"256 GB eSIM", image:"public/phones/17-mistblue.png", tag:"nuevo", unit:3699, bulk3:3599, bulk10:3299 },
       { series:"17", name:"iPhone 17", storage:"256 GB Chip + eSIM", image:"public/phones/17-lavender.png", tag:"nuevo", unit:3899, bulk3:3799, bulk10:3499 },
       { series:"17", name:"iPhone 17", storage:"512 GB eSIM", image:"public/phones/17-black.png", tag:"nuevo", unit:4299, bulk3:4199, bulk10:3999 },
@@ -452,7 +453,7 @@
       { series:"16", name:"iPhone 16", storage:"128 GB eSIM", image:"public/phones/16-ultramarine.png", unit:2899, bulk3:2799, bulk10:2499 },
       { series:"16", name:"iPhone 16", storage:"128 GB Chip + eSIM", image:"public/phones/16-black.png", unit:2999, bulk3:2899, bulk10:2599 },
       { series:"16", name:"iPhone 16", storage:"256 GB eSIM", image:"public/phones/16-teal.png", unit:3199, bulk3:3099, bulk10:2799 },
-      { series:"16", name:"iPhone 16", storage:"256 GB Chip + eSIM", image:"public/phones/16-pink.png", unit:3399, bulk3:3299, bulk10:2999 },
+      { series:"16", name:"iPhone 16", storage:"256 GB Chip + eSIM", image:"public/phones/16-pink.png", unit:3390, bulk3:3299, bulk10:2999 },
       { series:"16", name:"iPhone 16 Pro", storage:"128 GB eSIM", image:"public/phones/16-pro-natural.png", unit:4199, bulk3:3999, bulk10:3699 },
       { series:"16", name:"iPhone 16 Pro", storage:"128 GB Chip + eSIM", image:"public/phones/16-pro-desert.png", unit:4299, bulk3:4199, bulk10:3850 },
       { series:"16", name:"iPhone 16 Pro Max", storage:"256 GB eSIM", image:"public/phones/16-pro-max-desert.png", unit:4799, bulk3:4599, bulk10:4299 },
@@ -503,16 +504,23 @@
       const add = (current && current.extra) || 0;
       const preventa = p.preventa != null ? p.preventa + add : null;
       const contra = p.contra != null ? p.contra + add : null;
-      const main = preventa ?? p.unit ?? 0;
-      const label = p.preventa ? "Preventa" : "Unidad";
-      const extra = contra != null
-        ? `Contra entrega<br><strong class="contra" style="color:var(--fg)">${soles(contra)}</strong>`
-        : (p.bulk3 && p.bulk10 ? `+3: <strong style="color:var(--fg)">${soles(p.bulk3)}</strong><br>+10: <strong style="color:var(--fg)">${soles(p.bulk10)}</strong>` : "");
+      const main = preventa ?? p.unit ?? (p.bulk3 != null ? p.bulk3 + add : 0);
+      const label = p.preventa != null ? "Preventa" : (p.unit != null ? "Unidad" : "Mayor +3");
+      let extra = "";
+      if (contra != null) {
+        extra = `Contra entrega<br><strong class="contra" style="color:var(--fg)">${soles(contra)}</strong>`;
+        if (p.bulk3 != null) extra += `<br>+3: <strong class="bulk3" style="color:var(--fg)">${soles(p.bulk3 + add)}</strong>`;
+        if (p.bulk10 != null) extra += `<br>+10: <strong class="bulk10" style="color:var(--fg)">${soles(p.bulk10 + add)}</strong>`;
+      } else if (p.unit != null && p.bulk3 != null && p.bulk10 != null) {
+        extra = `+3: <strong class="bulk3" style="color:var(--fg)">${soles(p.bulk3)}</strong><br>+10: <strong class="bulk10" style="color:var(--fg)">${soles(p.bulk10)}</strong>`;
+      } else if (p.bulk10 != null) {
+        extra = `+10: <strong class="bulk10" style="color:var(--fg)">${soles(p.bulk10 + add)}</strong>`;
+      }
       const swatches = colors.length
         ? `<div class="swatches"><span class="color-label">Color</span><div class="dots">${colors.map((c) => `<button type="button" class="swatch${current && c.name === current.name ? " on" : ""}" style="background:${c.hex}" data-color="${c.name}" data-extra="${c.extra || 0}" data-img="${c.image}" title="${c.name}" aria-label="${c.name}"></button>`).join("")}</div></div>`
         : "";
       const spec = current ? `${p.storage} · <span class="color-name">${current.name}</span>` : p.storage;
-      return `<article class="card" data-preventa="${p.preventa ? "1" : ""}" data-model="${p.name}" data-storage="${p.storage}" data-base-preventa="${p.preventa ?? ""}" data-base-contra="${p.contra ?? ""}">${badge}
+      return `<article class="card" data-preventa="${p.preventa ? "1" : ""}" data-model="${p.name}" data-storage="${p.storage}" data-base-preventa="${p.preventa ?? ""}" data-base-contra="${p.contra ?? ""}" data-base-bulk3="${p.bulk3 ?? ""}" data-base-bulk10="${p.bulk10 ?? ""}">${badge}
         <div class="card-img"><img src="${current ? current.image : p.image}" alt="${p.name} ${current ? current.name : p.storage}"></div>
         <div class="card-body">
           <h3>${p.name}</h3>
@@ -536,6 +544,8 @@
         const link = el.querySelector(".consult");
         const priceEl = el.querySelector(".price");
         const contraEl = el.querySelector(".contra");
+        const bulk3El = el.querySelector(".bulk3");
+        const bulk10El = el.querySelector(".bulk10");
         el.querySelectorAll(".swatch").forEach((btn) => {
           btn.addEventListener("click", () => {
             el.querySelectorAll(".swatch").forEach((b) => b.classList.remove("on"));
@@ -545,7 +555,10 @@
             if (name) name.textContent = btn.dataset.color;
             const bump = +btn.dataset.extra || 0;
             if (priceEl && el.dataset.basePreventa !== "") priceEl.textContent = soles(+el.dataset.basePreventa + bump);
+            else if (priceEl && el.dataset.baseBulk3 !== "" && el.dataset.basePreventa === "") priceEl.textContent = soles(+el.dataset.baseBulk3 + bump);
             if (contraEl && el.dataset.baseContra !== "") contraEl.textContent = soles(+el.dataset.baseContra + bump);
+            if (bulk3El && el.dataset.baseBulk3 !== "" && el.dataset.basePreventa !== "") bulk3El.textContent = soles(+el.dataset.baseBulk3 + bump);
+            if (bulk10El && el.dataset.baseBulk10 !== "") bulk10El.textContent = soles(+el.dataset.baseBulk10 + bump);
             const fake = { name: el.dataset.model, storage: el.dataset.storage, preventa: el.dataset.preventa === "1" };
             link.href = wa(fake, btn.dataset.color);
           });
@@ -570,7 +583,10 @@
       renderCatalog(btn.dataset.tab);
     });
 
-    document.getElementById("price-rows").innerHTML = PRODUCTS.filter((p) => p.preventa && p.contra).map((p) => {
+    document.getElementById("price-rows").innerHTML = PRODUCTS.filter((p) => (p.preventa && p.contra) || (p.bulk3 && p.bulk10 && p.preventa == null && p.contra == null && p.series === "18")).map((p) => {
+      if (p.preventa == null) {
+        return `<tr><td class="strong">${p.name} ${p.storage}</td><td class="strong">+3 ${soles(p.bulk3)}<br>+10 ${soles(p.bulk10)}</td><td class="cyan">Solo mayor</td></tr>`;
+      }
       const colors = (COLORWAYS[p.name] || []).filter((c) => c.extra != null);
       if (!colors.length) {
         return `<tr><td class="strong">${p.name} ${p.storage}</td><td class="strong">${soles(p.contra)}</td><td class="cyan">${soles(p.preventa)}</td></tr>`;
